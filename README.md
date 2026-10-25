@@ -9,12 +9,13 @@ Ginny Control là công cụ giám sát đi kèm trong repo: tạo việc, giao 
 Yêu cầu: Python 3.11+, Git; PowerShell 7.4+ khi chạy lệnh. Python chỉ dùng thư viện chuẩn, không cần `pip install`.
 
 ```powershell
-cd C:\Projects\GinnyAI
+cd E:\GinnyAI
+$env:GINNY_DB = 'E:\GinnyAI\.ginny\tasks.sqlite3'
 python -m ginny init
 python -m ginny serve
 ```
 
-Mở trình duyệt trên **cùng máy**, nhập địa chỉ loopback `127.0.0.1` với cổng `8765`. Bảng tự tải lại mỗi 15 giây. Dừng dịch vụ bằng Ctrl+C. Hướng dẫn cài mới: [Windows 11](docs/windows.md).
+Mở trình duyệt trên **cùng máy**, nhập địa chỉ loopback `127.0.0.1` với cổng `8765`. Bảng tự tải lại mỗi 15 giây. Dừng dịch vụ bằng Ctrl+C. Công cụ cài mặc định trên C; source code, file `.md` và dữ liệu dự án nằm dưới **`E:\GinnyAI`**. Hướng dẫn cài mới, chuyển dữ liệu và cấu hình vùng tạm trên E: [Windows 11](docs/windows.md).
 
 1. Tạo việc với mục tiêu, tiêu chí hoàn thành và ngữ cảnh liên quan.
 2. Chọn **Bản giao việc**, sao chép vào ChatGPT/Codex; chọn **Nhận việc**.
