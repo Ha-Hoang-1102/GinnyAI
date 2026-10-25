@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ginny Control</title><link rel="stylesheet" href="/style.css"><script defer src="/app.js"></script>
+</head>
+<body>
+<header><div><span class="eyebrow">GINNY AI / KHÔNG GIAN ĐIỀU PHỐI</span><h1>Việc rõ. Kết quả thật.</h1><p>Giao việc qua ChatGPT/Codex, theo dõi tại một nơi.</p></div><button id="report">Báo cáo tổng hợp</button></header>
+<main>
+  <section class="overview" aria-label="Tổng quan"><div><strong id="active">0</strong><span>việc đang mở</span></div><div><strong id="due">0</strong><span>đến hạn / quá hạn</span></div><div><strong id="review">0</strong><span>chờ bạn duyệt</span></div><p>Chế độ thủ công · Không gọi API AI<br>Giờ hiển thị: UTC+07:00</p></section>
+  <p id="message" role="status"></p>
+  <div class="layout"><section class="panel"><h2>Giao việc mới</h2>
+    <form id="create">
+      <label>Tên việc<input name="title" required maxlength="160" placeholder="Ví dụ: Tổng hợp 3 công cụ AI cho nhóm"></label>
+      <div class="row"><label>Vai trò<select name="kind"><option value="decision">Quyết định</option><option value="powershell">PowerShell</option><option value="research">Nghiên cứu</option><option value="reminder">Nhắc việc</option><option value="article">Viết bài</option><option value="image">Hình ảnh</option></select></label><label>Ưu tiên<select name="priority"><option value="1">P1 · Cao</option><option value="2" selected>P2 · Thường</option><option value="3">P3 · Thấp</option></select></label></div>
+      <label>Mục tiêu<textarea name="objective" required maxlength="1000" placeholder="Kết quả cụ thể bạn cần"></textarea></label>
+      <label>Tiêu chí hoàn thành<textarea name="acceptance" required maxlength="1000" placeholder="Đo hoặc kiểm chứng kết quả bằng cách nào?"></textarea></label>
+      <label>Ngữ cảnh cần thiết<textarea name="context" maxlength="2000" placeholder="Nguồn, file, độc giả, ràng buộc. Chỉ gửi phần liên quan."></textarea></label>
+      <label>Hạn xử lý · UTC+07:00<input name="due_at" type="datetime-local"></label>
+      <label id="command-field" hidden>Lệnh hỗ trợ<select name="command_id"><option value="system.info">Thông tin hệ thống</option><option value="workspace.list">Liệt kê workspace</option><option value="git.status">Trạng thái Git</option></select></label>
+      <button class="primary" type="submit">Thêm vào hàng đợi</button>
+    </form>
+  </section><section class="work"><div class="work-heading"><h2>Tiến độ công việc</h2><button id="refresh">Tải lại</button></div><p class="hint">Đến hạn được đưa lên trước, sau đó theo ưu tiên. Bảng này không tự gửi thông báo.</p><div id="tasks"></div></section></div>
+</main>
+<dialog id="detail"><form method="dialog"><button class="close" aria-label="Đóng">Đóng</button></form><h2 id="detail-title"></h2><p id="detail-note"></p><textarea id="detail-text" rows="16" readonly aria-label="Nội dung"></textarea><button id="copy">Sao chép</button></dialog>
+<dialog id="result-dialog"><form id="result-form"><h2>Báo cáo từ tác nhân</h2><label>Kết quả, bằng chứng, điểm còn thiếu<textarea id="result-text" required maxlength="12000" rows="12"></textarea></label><div class="row"><button class="primary" type="submit">Gửi duyệt</button><button type="button" id="cancel-result">Quay lại</button></div></form></dialog>
+<footer>Ginny Control · Dữ liệu lưu trên máy đang chạy dịch vụ · Chưa kết nối tự động với ChatGPT Tasks</footer>
+</body></html>

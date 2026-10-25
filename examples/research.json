@@ -1,0 +1,8 @@
+{
+  "title": "So sánh công cụ điều phối AI",
+  "kind": "research",
+  "objective": "So sánh Ginny Control, n8n và một công cụ phù hợp khác cho cá nhân dùng Windows 11.",
+  "acceptance": "Bảng có chi phí, cách tích hợp ChatGPT/API, khả năng nhắc việc; URL và ngày truy cập của nguồn; một đề xuất có lý do.",
+  "context": "Ưu tiên ChatGPT/Codex hiện có, giao nhận việc thủ công, chưa dùng API tính phí. Kiểm tra thông tin hiện hành từ tài liệu chính thức.",
+  "priority": 2
+}
