@@ -135,3 +135,17 @@ Chỉ pull khi đã lưu/giải quyết thay đổi của bạn; không dùng re
 Phục hồi: dừng bảng và mọi runner; giữ một bản database hiện tại bằng tên mới. Sao chép bản backup cần dùng sang một file làm việc mới, ví dụ `E:\GinnyAI\.ginny\restored.sqlite3`, rồi kiểm tra bằng `python -m ginny --db E:\GinnyAI\.ginny\restored.sqlite3 serve`; giữ file backup gốc để có thể phục hồi lại. Không chép đè database đang mở. Nếu dùng `--db` khác mặc định, mọi CLI/runner phải dùng cùng `--db` hoặc `GINNY_DB`.
 
 Chưa thiết lập tự khởi động Windows, truy cập từ điện thoại vào bảng, hay đồng bộ database cloud. Nhắc qua ChatGPT Tasks hoạt động theo dịch vụ ChatGPT, không phụ thuộc cửa sổ Ginny đang mở sau khi lịch đã được tạo thành công.
+
+## 6. Cập nhật giao diện điều phối
+
+Trong cửa sổ đang chạy Ginny, nhấn **Ctrl+C** để dừng dịch vụ, rồi cập nhật nhánh đã cài:
+
+```powershell
+Set-Location E:\GinnyAI
+git status --short --branch
+git pull --ff-only
+if ($LASTEXITCODE -ne 0) { throw 'Chưa cập nhật được repo. Giữ nguyên file hiện có và kiểm tra lỗi Git.' }
+py -3 -m ginny serve
+```
+
+Dùng cùng phiên PowerShell đã cấu hình `GINNY_DB` ở mục 2. Nếu mở cửa sổ mới, chạy lại khối cấu hình phiên trước khi khởi động. Nhấn **Ctrl+F5** trong trình duyệt để tải lại CSS và JavaScript. Bản giao diện mới có nền xanh, Ginny ở giữa và bốn nhóm AI bao quanh; mỗi nhóm chứa các vai trò agent và nhiệm vụ từ database hiện tại. Khi chưa có nhiệm vụ, sơ đồ vẫn hiển thị nhóm/agent nhưng các bộ đếm là 0. Không cần cài thêm thư viện cho ứng dụng hoặc thay database.
