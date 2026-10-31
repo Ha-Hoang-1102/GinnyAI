@@ -49,6 +49,9 @@ ChatGPT trên điện thoại không tự truy cập PowerShell hay database t�
 - [Quy trình tiết kiệm ngữ cảnh và kiểm soát chất lượng](docs/workflow.md)
 - [Prompt nền cho Ginny](prompts/ginny-system.md)
 - [Mẫu yêu cầu theo vai trò](prompts/task-templates.md)
+- [Đánh giá 30 lựa chọn GitHub cho trợ lý mạng xã hội](docs/github-options-social-ai.md)
+- [Kế hoạch server Ubuntu và harness 24/7](docs/server-24x7-plan.md) — thiết kế giai đoạn tiếp theo, chưa triển khai; thuê bao ChatGPT/Claude hiện tại chưa phải ngân sách API.
+- [Cấu hình OpenClaw: giao diện quản trị, Telegram, các nhóm agent](docs/openclaw-setup.md) — bộ triển khai thử riêng; chưa cài trên server người dùng và chưa đồng bộ với bảng Ginny Control.
 
 ## Kiểm tra và sao lưu
 

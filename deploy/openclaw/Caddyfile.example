@@ -1,0 +1,6 @@
+# Host Caddy example only. Replace the domain after DNS/network setup.
+# Keep OpenClaw token authentication and device pairing enabled.
+ginny.example.com {
+    encode zstd gzip
+    reverse_proxy 127.0.0.1:18789
+}

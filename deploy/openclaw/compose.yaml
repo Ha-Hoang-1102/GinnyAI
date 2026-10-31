@@ -1,0 +1,43 @@
+name: ginny-harness
+services:
+  gateway:
+    # OpenClaw 2026.10.9, official linux/amd64 release, pinned by digest.
+    image: ghcr.io/openclaw/openclaw@sha256:deab8686a863c1d2255a43bb4677f4907b9af45aff340c062834d16756fd4ff8
+    platform: linux/amd64
+    user: "1000:1000"
+    init: true
+    restart: unless-stopped
+    environment:
+      TZ: Asia/Bangkok
+      OPENCLAW_STATE_DIR: /home/node/.openclaw
+      OPENCLAW_CONFIG_DIR: /home/node/.openclaw
+      OPENCLAW_CONFIG_PATH: /home/node/.openclaw/openclaw.json
+      OPENCLAW_WORKSPACE_DIR: /home/node/.openclaw/workspaces/ginny
+      XDG_CACHE_HOME: /home/node/.openclaw/cache
+      OPENCLAW_GATEWAY_TOKEN: ${OPENCLAW_GATEWAY_TOKEN:?Prepare the private compose.env first}
+      OPENCLAW_DISABLE_BONJOUR: "1"
+    volumes:
+      - type: bind
+        source: ${GINNY_OPENCLAW_STATE:?Set the absolute state directory}
+        target: /home/node/.openclaw
+        bind:
+          create_host_path: false
+    ports:
+      - "127.0.0.1:${GINNY_OPENCLAW_PORT:-18789}:18789"
+    command: ["node", "dist/index.js", "gateway", "--bind", "lan", "--port", "18789"]
+    cap_drop: [ALL]
+    security_opt: ["no-new-privileges:true"]
+    mem_limit: 4g
+    cpus: 2.0
+    pids_limit: 256
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+    healthcheck:
+      test: ["CMD", "node", "dist/docker-healthcheck.js"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
