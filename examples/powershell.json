@@ -1,0 +1,8 @@
+{
+  "title": "Kiểm tra môi trường PowerShell",
+  "kind": "powershell",
+  "command_id": "system.info",
+  "objective": "Đọc phiên bản PowerShell, hệ điều hành và workspace thực tế.",
+  "acceptance": "Exit code 0; báo cáo đúng máy đã chạy lệnh.",
+  "priority": 2
+}

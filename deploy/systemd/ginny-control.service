@@ -1,0 +1,36 @@
+[Unit]
+Description=Ginny Control (React build and local Python API)
+After=network.target
+
+[Service]
+Type=simple
+User=ginny-control
+Group=ginny-control
+WorkingDirectory=/srv/ginnyai/source/GinnyAI
+Environment=GINNY_DB=/srv/ginnyai/data/control/tasks.sqlite3
+Environment=PYTHONDONTWRITEBYTECODE=1
+ExecStart=/usr/bin/python3 -m ginny serve --port 8765
+Restart=on-failure
+RestartSec=5
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+PrivateDevices=true
+ProtectSystem=strict
+ProtectHome=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+LockPersonality=true
+CapabilityBoundingSet=
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+IPAddressDeny=any
+IPAddressAllow=localhost
+ReadWritePaths=/srv/ginnyai/data/control
+CPUQuota=100%
+MemoryMax=1G
+TasksMax=64
+
+[Install]
+WantedBy=multi-user.target
