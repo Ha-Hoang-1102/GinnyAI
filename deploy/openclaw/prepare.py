@@ -56,7 +56,9 @@ def prepare(target: Path, port: int):
             f"GINNY_OPENCLAW_STATE={state}\nGINNY_OPENCLAW_PORT={port}\n"
             f"OPENCLAW_GATEWAY_TOKEN={secrets.token_hex(32)}\n"
         )
-        for path in [target, *target.rglob("*")]:
+        # Hand over the top-level directory last so its new owner cannot alter
+        # children while the privileged initializer is setting permissions.
+        for path in sorted(target.rglob("*"), key=lambda p: len(p.parts), reverse=True) + [target]:
             path.chmod(0o700 if path.is_dir() else 0o600)
             if os.getuid() == 0:
                 os.chown(path, 1000, 1000)

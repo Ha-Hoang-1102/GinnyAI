@@ -2,6 +2,8 @@
 
 Trạng thái: đã chuẩn bị bộ cấu hình thử nghiệm OpenClaw, chưa cài trên server người dùng. Server chưa kết nối; chưa có budget/key API riêng; chưa xác minh quyền tài khoản mạng xã hội. Telegram trước, Discord sau; chưa có domain. Không có lời gọi model trả phí hoặc bài đăng nào được thực hiện trong bước chuẩn bị này. Xem [hướng dẫn và bằng chứng kiểm tra](openclaw-setup.md).
 
+Cập nhật 01/11/2026: người dùng đã cài Ubuntu 26.04 LTS và gửi log qua chat; OAM quản trị tách riêng, frontend yêu cầu React/Vite/Node.js. Dùng [hướng dẫn Ubuntu](ubuntu-server-setup.md) và [thiết kế OAM/tài nguyên](server-oam-resources.md) cho cấu hình mới. Các con số 20 CPU/32 GB/2 TB bên dưới là kế hoạch ban đầu, không thay cho số đo máy thật. Phiên Codex vẫn chưa có kết nối điều khiển server.
+
 ## Mục tiêu và kiến trúc đề xuất
 
 ```mermaid

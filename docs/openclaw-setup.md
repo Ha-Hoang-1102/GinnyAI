@@ -1,6 +1,6 @@
 # Ginny harness: OpenClaw trên Ubuntu
 
-Bộ chuẩn bị cho Ubuntu 24.04 **x86_64**, Telegram trước, Discord sau. Chưa triển khai trên server của người dùng; chưa có domain, đăng nhập model, bot token hoặc tài khoản mạng xã hội. OpenClaw Control UI là giao diện quản trị/chat của pilot. Bảng xanh Ginny Control hiện có vẫn là ứng dụng riêng, chưa đồng bộ công việc với harness.
+Mục tiêu hiện tại là Ubuntu **26.04 LTS x86_64** theo thông tin người dùng ngày 01/11/2026 (thay kế hoạch 24.04 ban đầu), Telegram trước, Discord sau. Nếu vừa cài Ubuntu hoặc gặp lỗi file không tồn tại khi chạy từ `/root`, bắt đầu tại [hướng dẫn Ubuntu từ đầu và bảo mật](ubuntu-server-setup.md). Chưa triển khai trên server của người dùng; chưa có domain, đăng nhập model, bot token hoặc tài khoản mạng xã hội. OpenClaw Control UI là giao diện quản trị/chat của pilot. Bảng xanh Ginny Control hiện có vẫn là ứng dụng riêng, chưa đồng bộ công việc với harness.
 
 ## Bộ cấu hình có gì?
 
@@ -8,6 +8,7 @@ Bộ chuẩn bị cho Ubuntu 24.04 **x86_64**, Telegram trước, Discord sau. C
 - [openclaw.json](../deploy/openclaw/openclaw.json): Ginny và năm vai trò nghiên cứu, biên tập, media, xuất bản, analytics. Token auth, ghép đôi thiết bị; tắt cron/heartbeat/embedding và hai kênh chat trước khi kết nối thật. Chưa chọn model hay API fallback.
 - [prepare.py](../deploy/openclaw/prepare.py): tạo state, prompt vai trò và token Gateway ngẫu nhiên tại thư mục riêng, quyền thư mục `700`/file `600`; **từ chối thư mục đã tồn tại**, không ghi đè dữ liệu, không cài hoặc khởi động dịch vụ. Token không được in ra.
 - Tool allowlist ban đầu chỉ cho điều phối/session; không cấp shell, browser, công cụ tạo media hay đăng bài. Native tools của Codex/Claude CLI vẫn phải kiểm tra riêng sau khi chọn runtime. Không coi cấu hình này là sandbox cho mọi chương trình bên trong container.
+- Rà soát 01/11/2026 đã tắt browser và terminal quản trị, tắt SSH-verified auto-pairing, giới hạn session visibility về `tree` và tắt quyền đọc chéo agent thông thường. Các phiên con được điều phối vẫn là phạm vi đọc được theo cơ chế runtime. Mạng Docker có bridge riêng `br-ginny`; policy chặn OAM phải thiết lập và kiểm tra trên host, bridge không tự tạo firewall.
 
 ## 1. Kiểm tra server
 

@@ -41,3 +41,12 @@ services:
       timeout: 10s
       retries: 5
       start_period: 60s
+
+# Dedicated bridge gives host firewall rules a stable interface to match.
+# This alone does NOT isolate OAM; apply and verify the host egress policy.
+networks:
+  default:
+    driver: bridge
+    enable_ipv6: false
+    driver_opts:
+      com.docker.network.bridge.name: br-ginny

@@ -6,6 +6,8 @@ Ginny Control là công cụ giám sát đi kèm trong repo: tạo việc, giao 
 
 Giao diện nền xanh hiển thị **Ginny ở trung tâm → 4 nhóm AI → 6 vai trò agent → nhiệm vụ**. Chọn nhóm hoặc agent để lọc công việc, xem trạng thái theo màu và chuyển qua các bước xử lý ngay trên thẻ nhiệm vụ. Agent trên sơ đồ là vai trò điều phối; trạng thái lấy từ dữ liệu công việc, chưa phải kết nối đến các tiến trình AI tự chạy.
 
+Giao diện được xây bằng **React + Vite trên Node.js**, không dùng PHP. Source/build nằm trong [frontend](frontend/README.md); bản build được đóng gói sẵn để các lệnh Python hiện tại vẫn dùng được. API vẫn là Python/SQLite, chưa phải API public có xác thực.
+
 ## Bắt đầu
 
 Yêu cầu: Python 3.11+, Git; PowerShell 7.4+ khi chạy lệnh. Python chỉ dùng thư viện chuẩn, không cần `pip install`.
@@ -52,6 +54,7 @@ ChatGPT trên điện thoại không tự truy cập PowerShell hay database t�
 - [Đánh giá 30 lựa chọn GitHub cho trợ lý mạng xã hội](docs/github-options-social-ai.md)
 - [Kế hoạch server Ubuntu và harness 24/7](docs/server-24x7-plan.md) — thiết kế giai đoạn tiếp theo, chưa triển khai; thuê bao ChatGPT/Claude hiện tại chưa phải ngân sách API.
 - [Cấu hình OpenClaw: giao diện quản trị, Telegram, các nhóm agent](docs/openclaw-setup.md) — bộ triển khai thử riêng; chưa cài trên server người dùng và chưa đồng bộ với bảng Ginny Control.
+- [Ubuntu 26.04: tải repo, Docker, quản trị và bảo mật](docs/ubuntu-server-setup.md) — bắt đầu từ máy mới, có bước tránh khóa SSH và báo cáo kiểm tra chỉ đọc.
 
 ## Kiểm tra và sao lưu
 

@@ -1,78 +1,15 @@
 <!doctype html>
 <html lang="vi">
-<head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#102e66">
-  <title>Ginny Control · Trung tâm điều phối</title>
-  <link rel="stylesheet" href="/style.css"><script defer src="/app.js"></script>
-</head>
-<body>
-<svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-  <symbol id="i-network" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><circle cx="5" cy="5" r="2"/><circle cx="19" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="19" r="2"/><path d="m6.5 6.5 3.3 3.3m4.4 4.4 3.3 3.3m0-11-3.3 3.3m-4.4 4.4-3.3 3.3"/></symbol>
-  <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></symbol>
-  <symbol id="i-list" viewBox="0 0 24 24"><path d="m3 6 1 1 2-2m-3 7 1 1 2-2m-3 7 1 1 2-2M10 6h11M10 12h11M10 18h11"/></symbol>
-  <symbol id="i-terminal" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="m6 9 3 3-3 3m7 0h5"/></symbol>
-  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></symbol>
-  <symbol id="i-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m16 8-2 6-6 2 2-6Z"/></symbol>
-  <symbol id="i-spark" viewBox="0 0 24 24"><path d="m12 3 2.5 6.5L21 12l-6.5 2.5L12 21l-2.5-6.5L3 12l6.5-2.5Z"/></symbol>
-  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
-  <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9ZM14 3v6h6M8 13h8m-8 4h5"/></symbol>
-  <symbol id="i-image" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8" cy="8" r="1"/><path d="m3 17 5-5 4 4 3-7 6 8"/></symbol>
-  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
-  <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 7v5h-5M4 17v-5h5m10-4a8 8 0 0 0-14-2m0 10a8 8 0 0 0 14 2"/></symbol>
-  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
-  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-5-5 5 5-5 5"/></symbol>
-  <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
-  <symbol id="i-alert" viewBox="0 0 24 24"><path d="m10 4-8 14a2 2 0 0 0 2 3h16a2 2 0 0 0 2-3L14 4a2.3 2.3 0 0 0-4 0ZM12 9v4m0 3v1"/></symbol>
-  <symbol id="i-play" viewBox="0 0 24 24"><path d="m8 4 12 8-12 8Z"/></symbol>
-</svg>
-<aside class="sidebar">
-  <a class="brand" href="#network"><span class="brand-mark"><svg class="icon"><use href="#i-network"/></svg></span><span>ginny<span class="brand-ai">AI</span><small>CONTROL CENTER</small></span></a>
-  <span class="nav-label">KHÔNG GIAN LÀM VIỆC</span>
-  <nav aria-label="Điều hướng chính">
-    <a class="nav-link" href="#network" aria-label="Điều phối AI"><svg class="icon"><use href="#i-network"/></svg>Điều phối AI</a>
-    <a class="nav-link" href="#work" aria-label="Công việc"><svg class="icon"><use href="#i-list"/></svg>Công việc<span id="nav-count" class="nav-count">0</span></a>
-    <button class="nav-link" id="report" aria-label="Báo cáo tổng hợp"><svg class="icon"><use href="#i-file"/></svg>Báo cáo tổng hợp</button>
-  </nav>
-  <div class="sidebar-teams"><span class="nav-label">CÁC NHÓM AI</span><div id="team-nav"></div></div>
-  <div class="sidebar-note"><svg class="icon"><use href="#i-compass"/></svg><strong>Bạn giữ quyền điều phối</strong><p>Giao việc qua ChatGPT/Codex.<br>Duyệt kết quả tại một nơi.</p><span class="mode-label">Chế độ thủ công</span></div>
-  <div class="sidebar-footer"><span class="avatar">G</span><div>Không gian cá nhân<small>Giờ hiển thị UTC+07:00</small></div></div>
-</aside>
-<div class="app-shell">
-  <header class="topbar"><div class="breadcrumb"><svg class="icon"><use href="#i-grid"/></svg><span>Không gian làm việc</span><span class="separator">/</span><strong>Điều phối AI</strong></div><div class="topbar-actions"><span id="sync-state" class="sync-state" role="status">Đang kết nối…</span><button id="refresh" class="icon-button" aria-label="Tải lại dữ liệu"><svg class="icon"><use href="#i-refresh"/></svg></button><button id="mobile-report" class="icon-button mobile-report" aria-label="Báo cáo tổng hợp"><svg class="icon"><use href="#i-file"/></svg></button><span class="avatar">G</span></div></header>
-  <main>
-    <section class="page-heading"><div><p class="eyebrow">GINNY WORKSPACE</p><h1>Trung tâm điều phối</h1><p>Một góc nhìn xuyên suốt, từ giao việc đến kết quả.</p></div><button id="new-task" class="primary" aria-label="Giao việc mới"><svg class="icon"><use href="#i-plus"/></svg>Giao việc mới</button></section>
-    <div id="message" class="message" role="status" hidden></div>
-    <section class="overview" aria-label="Tổng quan công việc">
-      <div class="metric"><span class="metric-icon blue"><svg class="icon"><use href="#i-list"/></svg></span><div><span>Việc đang mở</span><strong id="active">0</strong></div><small id="total-label">0 việc đã tạo</small></div>
-      <div class="metric"><span class="metric-icon cyan"><svg class="icon"><use href="#i-play"/></svg></span><div><span>Đang xử lý</span><strong id="running">0</strong></div><small>Đã nhận thực hiện</small></div>
-      <div class="metric"><span class="metric-icon violet"><svg class="icon"><use href="#i-check"/></svg></span><div><span>Chờ bạn duyệt</span><strong id="review">0</strong></div><small>Đã nộp kết quả</small></div>
-      <div class="metric"><span class="metric-icon amber"><svg class="icon"><use href="#i-alert"/></svg></span><div><span>Cần chú ý</span><strong id="attention">0</strong></div><small id="attention-note">0 đến hạn · 0 vướng/lỗi</small></div>
-    </section>
-    <div class="command-layout">
-      <section class="network-panel" id="network" aria-labelledby="network-title">
-        <div class="section-heading"><div><h2 id="network-title"><span class="section-dot"></span>Mạng lưới điều phối</h2><p>Chọn nhóm hoặc agent để xem nhiệm vụ.</p></div><span class="subtle-label">4 nhóm · 6 vai trò</span></div>
-        <div class="network-map" id="network-map">
-          <svg id="connections" class="connections" aria-hidden="true"></svg>
-          <div id="hub" class="hub"><div class="hub-orbit orbit-one"></div><div class="hub-orbit orbit-two"></div><button id="hub-button" class="hub-core" aria-label="Ginny AI · Xem tất cả công việc"><span class="hub-symbol"><svg class="icon"><use href="#i-network"/></svg></span><strong>GINNY<span>AI</span></strong><span class="hub-caption">TRUNG TÂM ĐIỀU PHỐI</span><span id="hub-status" class="hub-status">Chưa có việc đang làm</span></button><span class="hub-footnote">Giao việc · Theo dõi · Duyệt</span></div>
-          <div id="team-execution" class="team-slot slot-execution"></div><div id="team-research" class="team-slot slot-research"></div><div id="team-planning" class="team-slot slot-planning"></div><div id="team-creative" class="team-slot slot-creative"></div>
-        </div>
-        <div class="network-legend" aria-label="Chú giải trạng thái"><span><i class="dot queued"></i>Chờ nhận</span><span><i class="dot running"></i>Đang làm</span><span><i class="dot awaiting_review"></i>Chờ duyệt</span><span><i class="dot blocked"></i>Vướng / lỗi</span><span><i class="dot done"></i>Hoàn tất</span></div>
-        <p class="network-note">Agent thể hiện vai trò được giao; trạng thái lấy từ công việc đã ghi nhận.</p>
-      </section>
-      <aside class="flow-panel" aria-labelledby="flow-title"><div class="section-heading"><h2 id="flow-title">Dòng công việc</h2><svg class="icon"><use href="#i-list"/></svg></div><div id="pipeline" class="pipeline"></div><div class="completion"><div class="completion-chart"><svg viewBox="0 0 100 100" aria-hidden="true"><circle class="ring-track" cx="50" cy="50" r="40"/><circle id="completion-ring" class="ring-value" cx="50" cy="50" r="40" pathLength="100" stroke-dasharray="0 100"/></svg><strong id="completion-percent">—</strong></div><strong>Đã hoàn tất</strong><p id="completion-caption">Chưa có dữ liệu công việc</p></div><p class="flow-note">Tỷ lệ theo số việc hoàn tất.<br>Không tính việc đã hủy.</p></aside>
-    </div>
-    <section id="work" class="work-section" aria-labelledby="work-title"><div class="section-heading"><div><p class="eyebrow">TỪ ĐIỀU PHỐI ĐẾN THỰC THI</p><h2 id="work-title">Công việc của các agent <span id="visible-count" class="count-badge">0</span></h2></div><button id="clear-filter" class="text-button">Xem tất cả</button></div>
-      <div class="filters"><div class="search-field"><svg class="icon"><use href="#i-search"/></svg><input id="search" type="search" placeholder="Tìm tên, mục tiêu hoặc mã việc…" aria-label="Tìm công việc"></div><select id="kind-filter" aria-label="Lọc theo agent"><option value="all">Tất cả agent</option><option value="powershell">Executor · PowerShell</option><option value="research">Researcher · Nghiên cứu</option><option value="decision">Planner · Quyết định</option><option value="reminder">Reminder · Nhắc việc</option><option value="article">Editor · Bài viết</option><option value="image">Designer · Hình ảnh</option></select><select id="status-filter" aria-label="Lọc trạng thái"><option value="all">Mọi trạng thái</option><option value="queued">Chờ nhận</option><option value="running">Đang làm</option><option value="awaiting_review">Chờ duyệt</option><option value="blocked">Đang vướng</option><option value="failed">Thất bại</option><option value="done">Hoàn tất</option><option value="cancelled">Đã hủy</option></select></div>
-      <p id="filter-caption" class="filter-caption">Tất cả nhóm · Ưu tiên việc đến hạn</p><div id="tasks" class="tasks-grid"></div>
-    </section>
-    <footer><span>GINNY AI <span class="footer-divider">/</span> Không gian điều phối của bạn</span><span>Nhắc qua ChatGPT Tasks cần xác nhận riêng.</span></footer>
-  </main>
-</div>
-<dialog id="create-dialog" aria-labelledby="create-title"><div class="dialog-heading"><div><p class="eyebrow">NHIỆM VỤ MỚI</p><h2 id="create-title">Giao việc cho nhóm AI</h2></div><button class="icon-button" data-close="create-dialog" aria-label="Đóng tạo việc"><svg class="icon"><use href="#i-close"/></svg></button></div><p class="dialog-intro">Mục tiêu rõ ràng giúp agent tập trung đúng việc.</p>
-  <form id="create"><label>Tên việc<input name="title" required maxlength="160" placeholder="Ví dụ: Tổng hợp 3 công cụ AI cho nhóm"></label><div class="row"><label>Agent phụ trách<select name="kind"><option value="decision">Planner · Quyết định</option><option value="powershell">Executor · PowerShell</option><option value="research">Researcher · Nghiên cứu</option><option value="reminder">Reminder · Nhắc việc</option><option value="article">Editor · Bài viết</option><option value="image">Designer · Hình ảnh</option></select></label><label>Ưu tiên<select name="priority"><option value="1">P1 · Cao</option><option value="2" selected>P2 · Thường</option><option value="3">P3 · Thấp</option></select></label></div><label>Mục tiêu<textarea name="objective" required maxlength="1000" placeholder="Kết quả cụ thể bạn cần"></textarea></label><label>Tiêu chí hoàn thành<textarea name="acceptance" required maxlength="1000" placeholder="Đo hoặc kiểm chứng kết quả bằng cách nào?"></textarea></label><label>Ngữ cảnh cần thiết<textarea name="context" maxlength="2000" placeholder="Nguồn, file, độc giả và ràng buộc liên quan."></textarea></label><label>Hạn xử lý · UTC+07:00<input name="due_at" type="datetime-local"></label><label id="command-field" hidden>Lệnh PowerShell<select name="command_id"><option value="system.info">Thông tin hệ thống</option><option value="workspace.list">Liệt kê workspace</option><option value="git.status">Trạng thái Git</option></select></label><p id="create-error" class="form-error" role="alert" hidden></p><div class="dialog-actions"><button type="button" data-close="create-dialog">Quay lại</button><button class="primary" type="submit"><svg class="icon"><use href="#i-plus"/></svg>Thêm vào hàng đợi</button></div></form>
-</dialog>
-<dialog id="detail" aria-labelledby="detail-title"><div class="dialog-heading"><h2 id="detail-title"></h2><button class="icon-button" data-close="detail" aria-label="Đóng chi tiết"><svg class="icon"><use href="#i-close"/></svg></button></div><p id="detail-note" class="dialog-intro"></p><textarea id="detail-text" rows="16" readonly aria-label="Nội dung"></textarea><div class="dialog-actions"><button id="copy" class="primary">Sao chép nội dung</button></div></dialog>
-<dialog id="result-dialog" aria-labelledby="result-title"><form id="result-form"><div class="dialog-heading"><h2 id="result-title">Báo cáo từ tác nhân</h2><button type="button" class="icon-button" data-close="result-dialog" aria-label="Đóng báo cáo"><svg class="icon"><use href="#i-close"/></svg></button></div><label>Kết quả, bằng chứng, điểm còn thiếu<textarea id="result-text" required maxlength="12000" rows="12"></textarea></label><p id="result-error" class="form-error" role="alert" hidden></p><div class="dialog-actions"><button type="button" data-close="result-dialog">Quay lại</button><button class="primary" type="submit">Gửi duyệt</button></div></form></dialog>
-<noscript><p class="message">Bật JavaScript trong trình duyệt để xem sơ đồ và điều phối công việc.</p></noscript>
-</body></html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#102e66" />
+    <title>Ginny Control · Trung tâm điều phối</title>
+    <script type="module" crossorigin src="/app.js"></script>
+    <link rel="stylesheet" crossorigin href="/style.css">
+  </head>
+  <body>
+    <div id="root"></div>
+    <noscript>Bật JavaScript trong trình duyệt để xem sơ đồ và điều phối công việc.</noscript>
+  </body>
+</html>

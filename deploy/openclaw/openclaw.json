@@ -12,7 +12,8 @@
       "enabled": true,
       "allowedOrigins": ["http://localhost:18789", "http://127.0.0.1:18789"]
     },
-    "nodes": {"pairing": {"autoApproveLocal": false}}
+    "terminal": {"enabled": false},
+    "nodes": {"pairing": {"autoApproveLocal": false, "sshVerify": false}}
   },
   "agents": {
     "ownership": "explicit",
@@ -39,10 +40,13 @@
     }
   },
   "session": {"dmScope": "per-channel-peer"},
+  "browser": {"enabled": false},
   "memory": {"search": {"enabled": false}},
   "plugins": {"slots": {"memory": "none"}},
   "tools": {
     "allow": ["agents_list", "sessions_spawn", "sessions_list", "sessions_history", "session_status"],
+    "sessions": {"visibility": "tree"},
+    "agentToAgent": {"enabled": false},
     "exec": {"security": "deny", "ask": "always"},
     "elevated": {"enabled": false}
   },

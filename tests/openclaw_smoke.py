@@ -48,6 +48,14 @@ def main(cli):
         cmd = ["node", str(cli)]
         subprocess.run([*cmd, "config", "validate", "--json"], env=env, check=True)
         print("PASS exact deployment configuration validates", flush=True)
+        audit = subprocess.run([*cmd, "security", "audit", "--json"], env=env,
+                               text=True, capture_output=True, check=True)
+        report = json.loads(audit.stdout)
+        assert report["summary"]["critical"] == 0, report["summary"]
+        assert report["summary"]["warn"] == 0, report["summary"]
+        assert not any(f["checkId"] == "security.trust_model.cross_agent_session_access_default"
+                       for f in report["findings"]), report["summary"]
+        print("PASS built-in config audit: no critical/warn or default cross-agent session access", flush=True)
 
         # The host smoke test changes only container paths/listener/origins.
         config = json.loads((state / "openclaw.json").read_text())
